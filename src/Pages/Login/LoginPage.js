@@ -5,10 +5,9 @@ import './LoginPage.css';
 
 function LoginPage() {
   const user = useSelector((state) => state.userReducer);
-  console.log(user.name)
+  const dispatch = useDispatch();
 
   const [form, setForm] = useState({ username: '', password: '' });
-  const dispatch = useDispatch();
 
   const changeForm = (e) => {
     const {name, value} = e.target
@@ -22,12 +21,13 @@ function LoginPage() {
     const fixedPassword = user.password
 
     if(fixedName === form.username && fixedPassword === form.password){
-      dispatch(login())
-      localStorage.setItem("token", 123)
-      console.log(form)
+      var tokenRandom = Math.random().toString(36).substring(2)
+      localStorage.setItem("token", tokenRandom)
+      dispatch(login(tokenRandom))
     } else {
       alert("erro")
     }
+    console.log(user)
 
     setForm({ username: '', password: ''})
   }

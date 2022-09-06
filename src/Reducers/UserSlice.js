@@ -6,18 +6,27 @@ export const userSlice = createSlice({
     name: "admin",
     password: "admin",
     isLoggedIn: localStorage.getItem("token"),
-    personList: []
+    listPeople: []
   },
   reducers: {
-    login: (state) => {
-      state.isLoggedIn = true;
+    login: (state, action) => {
+      state.isLoggedIn = action.payload
     },
-    logout: (state) => {
-      state.isLoggedIn = false;
+    logout: (state, action) => {
+      state.isLoggedIn = action.payload
+    },
+    addPerson: (state, action) => {
+      state.listPeople = [...state.listPeople, action.payload];
+    },
+    removePerson: (state, action) => {
+      state.listPeople = [
+        ...state.listPeople.slice(0, action.payload),
+        ...state.listPeople.slice(action.payload + 1)
+      ]
     },
   },
 })
 
-export const { login, logout } = userSlice.actions
+export const { login, logout, addPerson, removePerson } = userSlice.actions
 
 export default userSlice.reducer
