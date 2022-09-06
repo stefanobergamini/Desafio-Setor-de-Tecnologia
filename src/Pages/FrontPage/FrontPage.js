@@ -18,6 +18,7 @@ function FrontPage() {
         numberPerson={index+1}
         cpf={person.cpf}
         name={person.name}
+        lastName={person.lastName}
       />
     )
   })
