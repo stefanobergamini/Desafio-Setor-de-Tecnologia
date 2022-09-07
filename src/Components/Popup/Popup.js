@@ -1,63 +1,131 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPerson } from "../../Reducers/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { validateFields } from "../../Helpers/Validations";
+import { addPerson, updatePerson } from "../../Reducers/UserSlice";
+import InputMask from "react-input-mask";
+import { Input } from "@mui/material";
 import './Popup.css'
 
-const Pupup = (props) => {
-  const [form, setForm] = useState({ name: '', lastName: '', cpf: '' });
+const Pupup = ({ index, trigger, setTrigger, edit }) => {
+
+  const { listPeople } = useSelector((state) => state.userReducer);
+
+  const [name, setName] = useState(!edit ? "" : listPeople[index].name);
+  const [lastName, setLastName] = useState(!edit ? "" : listPeople[index].lastName);
+  const [cpf, setCpf] = useState(!edit ? "" : listPeople[index].cpf);
+
   const dispatch = useDispatch();
   let peoples = []
+  
+  const refreshLocalStorage = () => {
+    const peoplesLocal = JSON.parse(localStorage.getItem("peoples"))
+    peoplesLocal[index].name = name
+    peoplesLocal[index].lastName = lastName
+    peoplesLocal[index].cpf = cpf
+    localStorage.setItem("peoples", JSON.stringify(peoplesLocal))
+  }
 
   const sendPersonToLocalStorage = () => {
-    if (localStorage.hasOwnProperty("peoples")){
+    if (localStorage.hasOwnProperty("peoples")) {
       peoples = JSON.parse(localStorage.getItem("peoples"))
     }
     peoples.push({
-      name: form.name,
-      lastName: form.lastName,
-      cpf: form.cpf
+      name: name,
+      lastName: lastName,
+      cpf: cpf
     })
     localStorage.setItem("peoples", JSON.stringify(peoples))
   }
+
+  const submitForm = (e) => {
+    e.preventDefault()
+    if (!validateFields(cpf.replaceAll(".", "").replace("-", ""), name, lastName)) {
+      console.log("oi")
+      return
+    }
+    if(edit){
+      dispatch(updatePerson({
+        index: index,
+        name: name,
+        lastName: lastName,
+        cpf: cpf
+      }))
   
-  const createPerson = (e) => {
-    e.preventDefault()    
-    dispatch(addPerson({
-      name: form.name,
-      lastName: form.lastName,
-      cpf: form.cpf
-    }))
-    sendPersonToLocalStorage()
-    setForm({ name: '', lastName: '', cpf: ''})
-    props.setTrigger(false)
-  }
-  
-  const changeForm = (e) => {
-    const {name, value} = e.target
-    setForm({ ...form, [name]: value })
+      refreshLocalStorage()
+      
+    } else {
+      dispatch(addPerson({
+        name: name,
+        lastName: lastName,
+        cpf: cpf
+      }))
+      sendPersonToLocalStorage()
+      setName("")
+      setLastName("")
+      setCpf("")
+    }
+    setTrigger(false)
   }
 
-  return (props.trigger) ? (
+  const changeName = (e) => {
+    setName(e.target.value.replace(/[^a-zA-Z]/gi, ""));
+  };
+  const changeLastName = (e) => {
+    setLastName(e.target.value.replace(/[^a-zA-Z]/gi, ""));
+  };
+  const changeCpf = (e) => {
+    setCpf(e.target.value);
+  };
+
+  return (trigger) ? (
     <div className="popup">
       <div className="popup-inner">
         <h2>Cadastro</h2>
         <p>Insira os dados da pessoa a ser cadastrada</p>
-        <form onSubmit={(e) => createPerson(e)}>
+        <form onSubmit={(e) => submitForm(e)}>
           <label htmlFor="input-nome">Nome</label>
-          <input type="text" id="input-nome" name="name" value={form.name} onChange={changeForm} />
+          <Input
+            name="name"
+            id="input-name"
+            placeholder="Nome"
+            type="text"
+            value={name}
+            onChange={changeName}
+          />
 
           <label htmlFor="input-sobrenome">Sobrenome</label>
-          <input type="text" id="input-sobrenome" name="lastName" value={form.lastName} onChange={changeForm} />
+          <Input
+            name="lastName"
+            id="input-sobrenome"
+            placeholder="Sobrenome completo"
+            type="text"
+            value={lastName}
+            onChange={changeLastName}
+          />
 
           <label htmlFor="input-cpf">CPF</label>
-          <input type="text" id="input-cpf" name="cpf" value={form.cpf} onChange={changeForm} />
+          <InputMask
+            mask="999.999.999-99"
+            value={cpf}
+            onChange={changeCpf}
+            maskChar=""
+          >
+            {() => (
+              <Input
+                name="cpf"
+                id="input-cpf"
+                placeholder="000.000.000-00"
+                type="tel"
+              />
+            )}
+          </InputMask>
 
           <button type="submit" className="bt bt-solid" >
             Confirmar
           </button>
         </form>
         <div className="botoes">
-          <button type="button" className="bt bt-vazado" onClick={() => props.setTrigger(false)}>
+          <button type="button" className="bt bt-vazado" onClick={() => setTrigger(false)}>
             Voltar
           </button>
         </div>

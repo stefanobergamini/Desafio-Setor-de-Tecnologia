@@ -5,7 +5,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { useDispatch } from 'react-redux';
 import { removePerson } from '../Reducers/UserSlice';
-import PopupEdit from './Popup/PopupEdit';
+import Popup from './Popup/Popup';
 
 const Acordeao = (props) => {
   const [popUp, setPopUp] = useState(false);
@@ -55,7 +55,7 @@ const Acordeao = (props) => {
         </div>
 
       </Accordion>
-      <PopupEdit index={props.numberPerson-1} trigger={popUp} setTrigger={setPopUp} />
+      <Popup edit={true} index={props.numberPerson-1} trigger={popUp} setTrigger={setPopUp} />
     </div>
   );
 };

@@ -38,7 +38,7 @@ function FrontPage() {
 
       </main>
       
-      <Popup trigger={popUp} setTrigger={setPopUp} />
+      <Popup edit={false} trigger={popUp} setTrigger={setPopUp} />
     </div>
     
   );
