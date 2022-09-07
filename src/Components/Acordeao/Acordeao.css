@@ -1,10 +1,6 @@
-.grupo h3{
-  color: #ff6600;
-  margin: 5px;
-  font-size: 24px;
-}
 .grupo .acordeao {
   border: 1px solid lightgray;
+  margin: 10px 0;
 }
 .grupo p {
   font-size: 20px;

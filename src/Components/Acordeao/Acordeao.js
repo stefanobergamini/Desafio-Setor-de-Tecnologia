@@ -25,7 +25,6 @@ const Acordeao = (props) => {
 
   return (
     <div className="grupo">
-      <h3>Pessoa cadastrada {props.numberPerson}</h3>
 
       <Accordion className='acordeao'>
         <AccordionSummary
@@ -33,12 +32,12 @@ const Acordeao = (props) => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <p>Informações da pessoa <strong>{props.name}</strong></p>
+          <p><strong>{props.name + " " + props.lastName}</strong></p>
         </AccordionSummary>
 
         <AccordionDetails>
           <div className="dados">
-            <h4>Nome da Pessoa: <strong>{props.name}</strong></h4>
+            <h4>Nome: <strong>{props.name}</strong></h4>
             <hr />
             <div>
               <p>Sobrenome: <strong>{props.lastName}</strong></p>

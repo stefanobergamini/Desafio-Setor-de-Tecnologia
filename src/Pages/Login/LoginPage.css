@@ -26,11 +26,6 @@
   border-radius: 50px;
   gap: 25px;
 }
-.Login .Login-form h1 {
-  color: #ff6600;
-  font-size: 40px;
-  margin: 0 0 25px;
-}
 .Login .Login-form .css-1nrlq1o-MuiFormControl-root {
   width: 100%;
 }

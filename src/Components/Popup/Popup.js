@@ -40,7 +40,6 @@ const Pupup = ({ index, trigger, setTrigger, edit }) => {
   const submitForm = (e) => {
     e.preventDefault()
     if (!validateFields(cpf.replaceAll(".", "").replace("-", ""), name, lastName)) {
-      console.log("oi")
       return
     }
 
@@ -68,10 +67,10 @@ const Pupup = ({ index, trigger, setTrigger, edit }) => {
   }
 
   const changeName = (e) => {
-    setName(e.target.value.replace(/[^A-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]/gi, ""));
+    setName(e.target.value.replace(/[^A-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]*$/gi, ""));
   };
   const changeLastName = (e) => {
-    setLastName(e.target.value.replace(/[^A-Za-z\s]*$/gi, ""));
+    setLastName(e.target.value.replace(/[^A-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\s]*$/gi, ""));
   };
   const changeCpf = (e) => {
     setCpf(e.target.value);

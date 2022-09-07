@@ -40,9 +40,8 @@ function LoginPage() {
 
   return (
     <div className="Login">
-      <img src={logo} alt="Logo - 123Projetei" />
       <form className='Login-form' onSubmit={(e) => handleSubmit(e)}>
-        <h1>Realize seu Login aqui</h1>
+        <img src={logo} alt="Logo - 123Projetei" />
         <FormControl variant="standard">
           <InputLabel htmlFor="input-user">Usuário</InputLabel>
           <Input
@@ -78,7 +77,7 @@ function LoginPage() {
           />
         </FormControl>
 
-        <button type="submit" className='bt'>Login</button>
+        <button type="submit" className='bt'>Entrar</button>
       </form>
     </div>
   );
