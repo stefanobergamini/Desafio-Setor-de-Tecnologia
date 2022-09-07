@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { useDispatch } from 'react-redux';
 import { removePerson } from '../Reducers/UserSlice';
+import PopupEdit from './Popup/PopupEdit';
 
 const Acordeao = (props) => {
+  const [popUp, setPopUp] = useState(false);
   const dispatch = useDispatch();
 
-  console.log(props)
+  const deleteFromLocalStorage = () => {
+    let peoples = JSON.parse(localStorage.getItem("peoples"))
+    peoples.splice(props.numberPerson - 1, 1)
+    localStorage.setItem("peoples", JSON.stringify(peoples))
+  }
 
   const deletePerson = () => {
     dispatch(removePerson(props.numberPerson - 1))
+    deleteFromLocalStorage()    
   }
 
   return (
@@ -39,7 +46,7 @@ const Acordeao = (props) => {
         </AccordionDetails>
 
         <div className="botoes">
-          <button type="button" className="bt bt-solid">
+          <button type="button" className="bt bt-solid" onClick={() => setPopUp(true)}>
             Editar dados
           </button>
           <button type="button" className="bt bt-vazado" onClick={deletePerson}>
@@ -48,6 +55,7 @@ const Acordeao = (props) => {
         </div>
 
       </Accordion>
+      <PopupEdit index={props.numberPerson-1} trigger={popUp} setTrigger={setPopUp} />
     </div>
   );
 };

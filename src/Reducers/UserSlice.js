@@ -6,7 +6,7 @@ export const userSlice = createSlice({
     name: "admin",
     password: "admin",
     isLoggedIn: localStorage.getItem("token"),
-    listPeople: []
+    listPeople: localStorage.hasOwnProperty("peoples") ? JSON.parse(localStorage.getItem("peoples")) : []
   },
   reducers: {
     login: (state, action) => {
@@ -24,9 +24,14 @@ export const userSlice = createSlice({
         ...state.listPeople.slice(action.payload + 1)
       ]
     },
+    updatePerson: (state, action) => {
+      state.listPeople = state.listPeople.map(
+        (content, i) => i === action.payload.index ? {...content, name: action.payload.name, lastName: action.payload.lastName, cpf: action.payload.cpf} : content
+      )
+    }
   },
 })
 
-export const { login, logout, addPerson, removePerson } = userSlice.actions
+export const { login, logout, addPerson, removePerson, updatePerson } = userSlice.actions
 
 export default userSlice.reducer

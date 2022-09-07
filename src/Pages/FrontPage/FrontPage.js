@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Acordeao from '../../Components/Acordeao';
-import Header from '../../Components/Header';
+import Header from '../../Components/Header/Header';
 import Popup from '../../Components/Popup/Popup';
-import { addPerson } from '../../Reducers/UserSlice';
 import './FrontPage.css'
 
 function FrontPage() {
@@ -11,7 +10,6 @@ function FrontPage() {
   const [popUp, setPopUp] = useState(false);
 
   var grupos = user.listPeople.map(function (person, index) {
-    console.log(person)
     return (
       <Acordeao
         key={index}

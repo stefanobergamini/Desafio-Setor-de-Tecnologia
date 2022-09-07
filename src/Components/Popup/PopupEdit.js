@@ -1,35 +1,33 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPerson } from "../../Reducers/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { updatePerson } from "../../Reducers/UserSlice";
 import './Popup.css'
 
-const Pupup = (props) => {
-  const [form, setForm] = useState({ name: '', lastName: '', cpf: '' });
+const PopupEdit = ({ index, trigger, setTrigger }) => {
+  const { listPeople } = useSelector((state) => state.userReducer);
+  const [form, setForm] = useState({ name: listPeople[index].name, lastName: listPeople[index].lastName, cpf: listPeople[index].cpf });
   const dispatch = useDispatch();
-  let peoples = []
 
-  const sendPersonToLocalStorage = () => {
-    if (localStorage.hasOwnProperty("peoples")){
-      peoples = JSON.parse(localStorage.getItem("peoples"))
-    }
-    peoples.push({
-      name: form.name,
-      lastName: form.lastName,
-      cpf: form.cpf
-    })
+  const refreshLocalStorage = () => {
+    const peoples = JSON.parse(localStorage.getItem("peoples"))
+    peoples[index].name = form.name
+    peoples[index].lastName = form.lastName
+    peoples[index].cpf = form.cpf
     localStorage.setItem("peoples", JSON.stringify(peoples))
   }
   
-  const createPerson = (e) => {
+  const updateThisPerson = (e) => {
     e.preventDefault()    
-    dispatch(addPerson({
+    dispatch(updatePerson({
+      index: index,
       name: form.name,
       lastName: form.lastName,
       cpf: form.cpf
     }))
-    sendPersonToLocalStorage()
-    setForm({ name: '', lastName: '', cpf: ''})
-    props.setTrigger(false)
+
+    refreshLocalStorage()
+    
+    setTrigger(false)
   }
   
   const changeForm = (e) => {
@@ -37,12 +35,12 @@ const Pupup = (props) => {
     setForm({ ...form, [name]: value })
   }
 
-  return (props.trigger) ? (
+  return (trigger) ? (
     <div className="popup">
       <div className="popup-inner">
         <h2>Cadastro</h2>
         <p>Insira os dados da pessoa a ser cadastrada</p>
-        <form onSubmit={(e) => createPerson(e)}>
+        <form onSubmit={(e) => updateThisPerson(e)}>
           <label htmlFor="input-nome">Nome</label>
           <input type="text" id="input-nome" name="name" value={form.name} onChange={changeForm} />
 
@@ -57,7 +55,7 @@ const Pupup = (props) => {
           </button>
         </form>
         <div className="botoes">
-          <button type="button" className="bt bt-vazado" onClick={() => props.setTrigger(false)}>
+          <button type="button" className="bt bt-vazado" onClick={() => setTrigger(false)}>
             Voltar
           </button>
         </div>
@@ -66,4 +64,4 @@ const Pupup = (props) => {
   ) : ""
 };
 
-export default Pupup;
+export default PopupEdit;
