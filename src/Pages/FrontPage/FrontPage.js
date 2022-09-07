@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Acordeao from '../../Components/Acordeao';
+import Acordeao from '../../Components/Acordeao/Acordeao';
 import Header from '../../Components/Header/Header';
 import Popup from '../../Components/Popup/Popup';
 import './FrontPage.css'
@@ -13,7 +13,7 @@ function FrontPage() {
     return (
       <Acordeao
         key={index}
-        numberPerson={index+1}
+        numberPerson={index + 1}
         cpf={person.cpf}
         name={person.name}
         lastName={person.lastName}
@@ -22,25 +22,28 @@ function FrontPage() {
   })
 
   return (
-    <div>
+    <div className='conteudo'>
       <Header />
       <main className='pessoas'>
         <section className='pessoas-introducao'>
           <h1>Bem vindo ao portal de cadastro de pessoas físicas</h1>
-          <p>Aqui será apresentado todas as pessoas em que foram realizados o cadastro e a informação sobre elas</p>
-          <span></span>
+          <p>
+            Aqui será apresentado todas as pessoas em que foram realizados o cadastro,
+            podendo <strong>visualizar</strong> e <strong>editar</strong> as informações sobre elas e a opção de <strong>adicionar</strong> novas pessoas
+          </p>
+          <hr />
         </section>
 
         <section className='pessoas-conteudo'>
           {grupos}
-          <button onClick={() => setPopUp(true)}>clique aqui</button>
-        </section> 
+        </section>
+          <button onClick={() => setPopUp(true)}>Adicionar Pessoa</button>
 
       </main>
-      
+
       <Popup edit={false} trigger={popUp} setTrigger={setPopUp} />
     </div>
-    
+
   );
 }
 

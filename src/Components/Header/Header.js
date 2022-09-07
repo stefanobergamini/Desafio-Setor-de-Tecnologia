@@ -5,6 +5,7 @@ import iconUserMobile from "../../Assets/Imgs/Icon-User-Mobile.svg";
 import IconMenu from '../../Assets/Imgs/Icon-Menu.svg'
 import IconClose from '../../Assets/Imgs/Icon-Close.svg'
 import { logout } from '../../Reducers/UserSlice';
+import logo from '../../Assets/Imgs/logo_123projetei.webp'
 import './Header.css'
 
 const Header = () => {
@@ -20,14 +21,12 @@ const Header = () => {
     <header className="header-interno">
       <div className="container">
         <div>
-          <img src="" alt="Logo a ser selecionado" />
+          <img src={logo} alt="Logo a ser selecionado" />
         </div>
-        <nav className="nav">
-          <div className="exit">
-            <img src={iconUser} alt="" />
-            <div><span>{user.name}</span> - <button onClick={logoutClick}>sair</button></div>
-          </div>
-        </nav>
+        <div className="saida">
+          <img src={iconUser} alt="" />
+          <div><span>{user.name}</span> - <button onClick={logoutClick}>Logout</button></div>
+        </div>
         <button className="bt-mobile" onClick={() => setState(!state)}> {!state ? <img src={IconMenu} alt="" /> : <img src={IconClose} alt="" />} </button>
 
         {state && <div className="menu-mobile">

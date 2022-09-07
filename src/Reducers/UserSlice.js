@@ -26,7 +26,7 @@ export const userSlice = createSlice({
     },
     updatePerson: (state, action) => {
       state.listPeople = state.listPeople.map(
-        (content, i) => i === action.payload.index ? {...content, name: action.payload.name, lastName: action.payload.lastName, cpf: action.payload.cpf} : content
+        (content, i) => i === action.payload.index ? { ...content, name: action.payload.name, lastName: action.payload.lastName, cpf: action.payload.cpf } : content
       )
     }
   },

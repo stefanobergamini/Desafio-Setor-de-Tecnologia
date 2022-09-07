@@ -4,8 +4,9 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { useDispatch } from 'react-redux';
-import { removePerson } from '../Reducers/UserSlice';
-import Popup from './Popup/Popup';
+import { removePerson } from '../../Reducers/UserSlice';
+import Popup from '../Popup/Popup';
+import './Acordeao.css'
 
 const Acordeao = (props) => {
   const [popUp, setPopUp] = useState(false);
@@ -19,43 +20,44 @@ const Acordeao = (props) => {
 
   const deletePerson = () => {
     dispatch(removePerson(props.numberPerson - 1))
-    deleteFromLocalStorage()    
+    deleteFromLocalStorage()
   }
 
   return (
     <div className="grupo">
       <h3>Pessoa cadastrada {props.numberPerson}</h3>
 
-      <Accordion>
+      <Accordion className='acordeao'>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <p>Informações da pessoa {props.name}</p>
+          <p>Informações da pessoa <strong>{props.name}</strong></p>
         </AccordionSummary>
 
         <AccordionDetails>
           <div className="dados">
-            <h4>{props.name}</h4>
-            <p>
-              <span>{props.lastName}</span>
-              <span>{props.cpf}</span>
-            </p>
+            <h4>Nome da Pessoa: <strong>{props.name}</strong></h4>
+            <hr />
+            <div>
+              <p>Sobrenome: <strong>{props.lastName}</strong></p>
+              <p> CPF: <strong>{props.cpf}</strong></p>
+            </div>
           </div>
         </AccordionDetails>
 
         <div className="botoes">
-          <button type="button" className="bt bt-solid" onClick={() => setPopUp(true)}>
+          <button type="button" className="bt-editar" onClick={() => setPopUp(true)}>
             Editar dados
           </button>
-          <button type="button" className="bt bt-vazado" onClick={deletePerson}>
+          <button type="button" className="bt" onClick={deletePerson}>
             Apagar cadastro
           </button>
         </div>
 
       </Accordion>
-      <Popup edit={true} index={props.numberPerson-1} trigger={popUp} setTrigger={setPopUp} />
+      <Popup edit={true} index={props.numberPerson - 1} trigger={popUp} setTrigger={setPopUp} />
     </div>
   );
 };

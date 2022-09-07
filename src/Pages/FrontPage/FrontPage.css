@@ -1,0 +1,48 @@
+.conteudo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+}
+.conteudo .pessoas {
+  width: 75%;
+}
+.conteudo .pessoas .pessoas-introducao {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.conteudo .pessoas .pessoas-introducao h1 {
+  text-align: center;
+  font-size: 38px;
+}
+.conteudo .pessoas .pessoas-introducao p {
+  text-align: center;
+  font-size: 18px;
+}
+.conteudo .pessoas .pessoas-introducao p strong{
+  color: #ff6600;
+}
+.conteudo .pessoas .pessoas-introducao hr{
+  width: 100%;
+  margin-bottom: 30px;
+}
+.conteudo .pessoas button {
+  margin: 15px auto;
+  display: block;
+  width: 250px;
+  cursor: pointer;
+  border-radius: 60px;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 10px solid transparent;
+  background-color: #a1a1a1;
+  color: #fff;
+  transition: 0.5s;
+}
+.conteudo .pessoas button:hover {
+  background-color: #ff6600;
+}
