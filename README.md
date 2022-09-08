@@ -4,7 +4,7 @@ A aplicação foi desenvolvida utilizando de React e Redux, salvando os dados ne
 
 ## Execução do projeto
 
-Para executar o projeto basta clonar o repositório e utilizar do comando "npm run start" 
+Para executar o projeto basta clonar o repositório e utilizar do comando "npm install" ou "yarn install" (qual preferir) e executar o comando "npm start" ou "yarn start"
 
 ## Utilizando do Desafio
 
