@@ -38,7 +38,7 @@ function FrontPage() {
           <h2>Pessoas Cadastradas:</h2>
           {grupos}
         </section>
-          <button onClick={() => setPopUp(true)}>Adicionar Pessoa</button>
+        <button className='bt-completo' onClick={() => setPopUp(true)}>Adicionar Pessoa</button>
 
       </main>
 

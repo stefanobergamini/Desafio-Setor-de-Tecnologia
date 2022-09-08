@@ -47,7 +47,7 @@ const Acordeao = (props) => {
         </AccordionDetails>
 
         <div className="botoes">
-          <button type="button" className="bt-editar" onClick={() => setPopUp(true)}>
+          <button type="button" className="bt-completo" onClick={() => setPopUp(true)}>
             Editar dados
           </button>
           <button type="button" className="bt" onClick={deletePerson}>

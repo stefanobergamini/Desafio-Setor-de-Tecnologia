@@ -6,12 +6,14 @@
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  background: linear-gradient(45deg, rgba(53,53,53,1) 0%, rgba(136,73,32,1) 31%, rgba(200,89,15,1) 54%, rgba(255,102,0,1) 84%);
+  background: linear-gradient(45deg, rgba(53, 53, 53, 1) 0%, rgba(136, 73, 32, 1) 31%, rgba(200, 89, 15, 1) 54%, rgba(255, 102, 0, 1) 84%);
 }
+
 .Login img {
   max-width: 250px;
   margin-bottom: 10px;
 }
+
 .Login .Login-form {
   display: flex;
   align-items: center;
@@ -26,37 +28,43 @@
   border-radius: 50px;
   gap: 25px;
 }
+
 .Login .Login-form .css-1nrlq1o-MuiFormControl-root {
   width: 100%;
 }
+
 .Login .Login-form .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
   font-size: 18px;
 }
+
 .Login .Login-form .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
   color: #ff6600;
 }
+
 .Login .Login-form .css-1ptx2yq-MuiInputBase-root-MuiInput-root:after {
   border-bottom: 2px solid #ff6600;
 }
-.Login .Login-form .bt {
-  cursor: pointer;
-  border-radius: 60px;
-  padding: 10px 50px;
-  font-size: 20px;
-  font-weight: 600;
-  margin-top: 20px;
-  border: 10px solid transparent;
-  background-color: #a1a1a1;
-  color: #fff;
-  transition: 0.5s;
-}
-.Login .Login-form .bt:hover {
-  transition: 0.5s;
-  background-color: #ff6600;
+
+
+@media (max-width: 500px) {
+  .Login .Login-form {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .Login .Login-form img {
+    max-width: 175px;
+  }
 }
 
-@media (max-width: 360px) {
-  .Login .Login-form h1 {
-    font-size: 25px;
+@media (max-width: 325px) {
+  .Login .Login-form .bt-completo {
+    margin: 10px auto;
+    width: 175px;
+  }
+
+  .Login .Login-form .bt-incompleto {
+    margin: 10px auto;
+    width: 175px;
   }
 }

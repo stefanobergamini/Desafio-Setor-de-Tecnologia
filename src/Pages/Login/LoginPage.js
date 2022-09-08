@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from "../../Reducers/UserSlice";
 import { FormControl, IconButton, Input, InputAdornment, InputLabel } from '@mui/material';
@@ -13,6 +13,14 @@ function LoginPage() {
 
   const [form, setForm] = useState({ username: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
+
+  const [completo, setCompleto] = useState(false);
+
+  useEffect(() => {
+    if (form.username && form.password)
+      setCompleto(true);
+    else setCompleto(false);
+  }, [form.username, form.password]);
 
   const changeForm = (e) => {
     const { name, value } = e.target
@@ -77,7 +85,9 @@ function LoginPage() {
           />
         </FormControl>
 
-        <button type="submit" className='bt'>Entrar</button>
+        <button type="submit" className={completo ? "bt-completo" : "bt-incompleto"} >
+          Entrar
+        </button>
       </form>
     </div>
   );

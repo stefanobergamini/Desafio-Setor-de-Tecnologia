@@ -24,25 +24,11 @@
   display: flex;
   padding: 5px;
 }
-.grupo .botoes .bt-editar {
-  margin: 15px auto;
-  display: block;
-  width: 250px;
-  cursor: pointer;
-  border-radius: 60px;
-  padding: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  border: 10px solid transparent;
-  background-color: #ff6600;
-  color: #fff;
-  transition: 0.5s;
-}
-.grupo .botoes .bt-editar:hover {
-  background-color: #fff;
-  color: #ff6600;
-  border: 3px solid #ff6600;
-  transition: 0.5s;
+
+@media (max-width: 700px) {
+  .grupo .botoes {
+    gap: 5px;
+  }
 }
 
 @media (max-width: 450px) {
@@ -50,22 +36,41 @@
     font-size: 16px;
   }
   .grupo .dados h4 {
+    text-align: center;
     font-size: 14px;
   }
-  .grupo .botoes .bt-editar {
+  .grupo .dados div {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .grupo .botoes {
+    flex-direction: column;
+  }
+  .grupo .botoes .bt-completo {
+    margin: 2px auto;
     width: 175px;
     font-size: 14px;
   }
   .grupo .botoes .bt {
+    margin: 2px auto;
     width: 175px;
     font-size: 14px;
   }
 }
-@media (max-width: 300px) {
+@media (max-width: 350px) {
   .grupo p {
     font-size: 14px;
   }
   .grupo .dados h4 {
+    font-size: 16px;
+  }
+}
+@media (max-width: 300px) {
+  .grupo p {
     font-size: 12px;
+  }
+  .grupo .dados h4 {
+    font-size: 14px;
   }
 }

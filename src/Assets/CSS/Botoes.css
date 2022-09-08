@@ -1,0 +1,63 @@
+
+.bt-completo {
+  margin: 15px auto;
+  display: block;
+  width: 250px;
+  height: 48.75px;
+  cursor: pointer;
+  border-radius: 60px;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 10px solid transparent;
+  background-color: #ff6600;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.bt-completo:hover {
+  height: 48.75px;
+  background-color: #fff;
+  color: #ff6600;
+  border: 3px solid #ff6600;
+  transition: 0.5s;
+}
+
+.bt-incompleto {
+  margin: 15px auto;
+  width: 250px;
+  cursor: pointer;
+  border-radius: 60px;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 10px solid transparent;
+  background-color: #a1a1a1;
+  color: #fff;
+}
+
+.bt-incompleto:hover {
+  background-color: #a1a1a1;
+  color: #fff;
+}
+
+.bt {
+  height: 48.75px;
+  margin: 15px auto;
+  width: 250px;
+  cursor: pointer;
+  border-radius: 60px;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 10px solid transparent;
+  background-color: #a1a1a1;
+  color: #fff;
+}
+
+.bt:hover {
+  height: 48.75px;
+  background-color: #ff6600;
+  color: #fff;
+  transition: 0.5s;
+}

@@ -60,22 +60,50 @@
 .popup .popup-inner form .css-1tcs2i1-MuiInputBase-root-MuiInput-root:after {
   border-bottom: 2px solid #ff6600;
 }
-.popup .popup-inner .bt {
-  width: 250px;
-  cursor: pointer;
-  border-radius: 60px;
-  padding: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  border: 10px solid transparent;
-  background-color: #a1a1a1;
-  color: #fff;
-  transition: 0.5s;
+
+@media (max-width: 600px) {
+  .popup .popup-inner {
+    max-width: 350px;
+  }
 }
-.popup .popup-inner .bt:hover {
-  transition: 0.5s;
-  background-color: #ff6600;
+@media (max-width: 450px) {
+  .popup .popup-inner {
+    max-width: 300px;
+  }
+  .popup .popup-inner p {
+    text-align: center;
+  }
+  .popup .popup-inner .bt,
+  .popup .popup-inner form .bt-completo,
+  .popup .popup-inner form .bt-incompleto {
+    margin: 5px auto;
+  }
 }
-.popup .popup-inner .bt-voltar {
-  margin-top: 10px;
+@media (max-width: 400px) {
+  .popup .popup-inner {
+    min-width: 200px;
+    max-width: 80%;
+  }
+  .popup .popup-inner p {
+    text-align: center;
+  }
+  .popup .popup-inner .bt,
+  .popup .popup-inner form .bt-completo,
+  .popup .popup-inner form .bt-incompleto {
+    width: 150px;
+  }
+}
+@media (max-width: 350px) {
+  .popup .popup-inner {
+    min-width: 200px;
+    max-width: 80%;
+  }
+  .popup .popup-inner form div {
+    gap: 3px
+  }
+  .popup .popup-inner .bt,
+  .popup .popup-inner form .bt-completo,
+  .popup .popup-inner form .bt-incompleto {
+    width: 150px;
+  }
 }

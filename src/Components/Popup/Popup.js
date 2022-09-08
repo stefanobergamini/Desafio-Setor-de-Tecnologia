@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { validateFields } from "../../Helpers/Validations";
 import { addPerson, updatePerson } from "../../Reducers/UserSlice";
@@ -14,8 +14,17 @@ const Pupup = ({ index, trigger, setTrigger, edit }) => {
   const [lastName, setLastName] = useState(!edit ? "" : listPeople[index].lastName);
   const [cpf, setCpf] = useState(!edit ? "" : listPeople[index].cpf);
 
+  const [completo, setCompleto] = useState(false);
+
   const dispatch = useDispatch();
   let peoples = []
+
+  
+  useEffect(() => {
+    if (name && lastName && cpf.length === 14)
+      setCompleto(true);
+    else setCompleto(false);
+  }, [name, lastName, cpf]);
 
   const refreshLocalStorage = () => {
     const peoplesLocal = JSON.parse(localStorage.getItem("peoples"))
@@ -123,11 +132,11 @@ const Pupup = ({ index, trigger, setTrigger, edit }) => {
               )}
             </InputMask>
           </div>
-          <button type="submit" className="bt" >
+          <button type="submit" className={completo ? "bt-completo" : "bt-incompleto"} >
             Confirmar
           </button>
         </form>
-        <button type="button" className="bt bt-voltar" onClick={() => setTrigger(false)}>
+        <button type="button" className="bt" onClick={() => setTrigger(false)}>
           Voltar
         </button>
       </div>
