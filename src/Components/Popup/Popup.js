@@ -19,7 +19,6 @@ const Pupup = ({ index, trigger, setTrigger, edit }) => {
   const dispatch = useDispatch();
   let peoples = []
 
-  
   useEffect(() => {
     if (name && lastName && cpf.length === 14)
       setCompleto(true);
